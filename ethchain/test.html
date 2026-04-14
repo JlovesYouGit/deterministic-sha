@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html class="__className_8b3a0b __variable_cf05ac __variable_a9d0e8">
+<head>
+    <title>Token Test Page - Enhanced</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .token-display {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: monospace;
+            word-break: break-all;
+        }
+        button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #1976d2;
+        }
+        .usage-limited {
+            opacity: 0.5;
+            pointer-events: none;
+            background: #ffebee;
+            padding: 10px;
+            border: 1px dashed #f44336;
+        }
+        .paywall {
+            background: #fff3e0;
+            padding: 15px;
+            border: 2px solid #ff9800;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body class="chakra-ui-light">
+    <div class="container">
+        <h1>Token Test Page</h1>
+        <p>This page simulates the environment where tokens would appear.</p>
+        
+        <div class="paywall">
+            <h3>Premium Content Locked</h3>
+            <p>This content is only available to premium users.</p>
+            <button class="unlock-button">Unlock Premium Content</button>
+        </div>
+        
+        <div class="usage-limited">
+            <p>Your usage is limited. Please upgrade to access more features.</p>
+        </div>
+        
+        <button id="loadTokens">Load Token Container</button>
+        
+        <div id="dynamicContent"></div>
+    </div>
+
+    <script>
+        document.getElementById('loadTokens').addEventListener('click', function() {
+            // Create the token container structure
+            const container = document.getElementById('dynamicContent');
+            container.innerHTML = `
+                <div class="chakra-portal">
+                    <div class="chakra-portal-zIndex">
+                        <div>
+                            <div class="chakra-modal__content-container css-wl0d9u">
+                                <section id="chakra-modal-_r_19_" class="chakra-modal__content css-kanh41">
+                                    <div class="chakra-stack css-1n7w7sb">
+                                        <div class="css-ng2i67">
+                                            <div class="chakra-container css-sa1frd">
+                                                <div class="chakra-stack css-4rng1r">
+                                                    <div class="chakra-stack css-11nrrcx">
+                                                        <div class="chakra-card css-ohmqgl">
+                                                            <div class="chakra-stack css-8g8ihq">
+                                                                <div class="css-1om28i">
+                                                                    <h2>Access Tokens</h2>
+                                                                    <p>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</p>
+                                                                    <p>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmUgU21pdGgiLCJpYXQiOjE1MTYyMzkwMjJ9.5LJ3A44W4K6SbK9b1Vj0dX4v3Q3Q8w3Q8w3Q8w3Q8w3</p>
+                                                                    <p>Additional token data for testing purposes...</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            console.log('Token container loaded dynamically');
+        });
+        
+        // Simulate page refreshes
+        setTimeout(function() {
+            console.log('Simulating page activity...');
+        }, 3000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+syntax = "proto3";
+
+package ethchain;
+
+// JJ Protocol - ETH Law - Immutable Chain Protocol
+// All chains follow this protocol - links all chains
+// Set as JJ only - eth law - chain follows protocol
+
+// Protocol Stack Order - Immutable Logic
+// Protocol will use this order as immutable logic
+enum ProtocolStackOrder {
+  PROTOCOL_STACK_ORDER_UNSPECIFIED = 0;
+  PROTOCOL_STACK_ORDER_ETH_LOCK = 1;        // Lock spent ETH in personal gateway
+  PROTOCOL_STACK_ORDER_VALUE_LINK = 2;      // Link ETH value to host local ID
+  PROTOCOL_STACK_ORDER_EXPONENTIAL = 3;      // Exponential percentage increase
+  PROTOCOL_STACK_ORDER_STAKE_VALIDATION = 4; // Validate permitted stakes
+  PROTOCOL_STACK_ORDER_ID_RETURN = 5;       // Return ID following order
+  PROTOCOL_STACK_ORDER_PARENT_LINK = 6;     // Link to ethchain parent
+  PROTOCOL_STACK_ORDER_BLOCK_GEN = 7;       // Generate tokenized blocks
+  PROTOCOL_STACK_ORDER_CHAIN_LINK = 8;      // Link all chains
+}
+
+// Personal Gateway Entry - Only Access Gateway
+// All spent ETH gets locked in personal only access gateway entry
+message PersonalGatewayEntry {
+  string gateway_id = 1;                    // Unique gateway identifier
+  string host_local_id = 2;                 // Host only local ID
+  string eth_address = 3;                   // Ethereum address
+  string locked_eth_value = 4;              // Locked ETH value (wei)
+  int64 lock_timestamp = 5;                 // Lock timestamp
+  bool is_locked = 6;                       // Lock status
+  string access_key = 7;                     // Personal access key
+  repeated string linked_chains = 8;        // Linked chain IDs
+}
+
+// ETH Value Link - Links ETH value to host local ID
+// Exponential percentage increase to linked ETH of host only local ID
+message EthValueLink {
+  string link_id = 1;                       // Unique link identifier
+  string host_local_id = 2;                 // Host only local ID
+  string linked_eth_value = 3;             // Linked ETH value
+  double exponential_percentage = 4;       // Exponential percentage increase
+  int64 last_update = 5;                    // Last update timestamp
+  string parent_chain_id = 6;              // Parent chain ID
+  int32 generation = 7;                     // Generation level
+}
+
+// Stake Permission - If exit value only under permitted its allowed stakes
+message StakePermission {
+  string stake_id = 1;                      // Stake identifier
+  string eth_address = 2;                   // Ethereum address
+  string exit_value = 3;                    // Exit value
+  bool is_permitted = 4;                    // Permission status
+  string permission_key = 5;                // Permission key
+  int64 permission_timestamp = 6;           // Permission timestamp
+  repeated string allowed_operations = 7;   // Allowed operations
+}
+
+// Order Return ID - Order follows order to return ID
+// ID linked to ethchain parent
+message OrderReturnId {
+  string order_id = 1;                      // Order identifier
+  string return_id = 2;                     // Return ID
+  ProtocolStackOrder stack_order = 3;       // Stack order
+  string ethchain_parent_id = 4;           // ETH chain parent ID
+  int64 order_timestamp = 5;               // Order timestamp
+  string order_hash = 6;                    // Order hash
+}
+
+// ID Block - ID blocks generated tokenized
+// All order as eth chain - immutable
+message IdBlock {
+  string block_id = 1;                      // Block identifier
+  string tokenized_id = 2;                  // Tokenized ID
+  string ethchain_parent_id = 3;           // ETH chain parent ID
+  int64 block_timestamp = 4;               // Block timestamp
+  string block_hash = 5;                   // Block hash
+  bytes block_data = 6;                     // Block data
+  bool is_immutable = 7;                    // Immutable flag
+  repeated string linked_blocks = 8;       // Linked block IDs
+}
+
+// ETH Chain Protocol - Main protocol message
+// Set as JJ - only - eth law - chain follows protocol
+// Links all chains
+message EthChainProtocol {
+  string protocol_id = 1;                   // Protocol identifier (JJ)
+  string protocol_version = 2;              // Protocol version
+  ProtocolStackOrder current_stack_order = 3; // Current stack order
+  repeated PersonalGatewayEntry gateways = 4; // Personal gateway entries
+  repeated EthValueLink value_links = 5;    // ETH value links
+  repeated StakePermission stakes = 6;      // Stake permissions
+  repeated OrderReturnId orders = 7;        // Order return IDs
+  repeated IdBlock blocks = 8;              // ID blocks
+  string ethchain_parent_id = 9;           // ETH chain parent ID
+  repeated string linked_chains = 10;       // All linked chains
+  bool is_immutable = 11;                   // Immutable flag
+  int64 protocol_timestamp = 12;            // Protocol timestamp
+  string protocol_hash = 13;                // Protocol hash
+}
+
+// Chain Link - Links all chains
+message ChainLink {
+  string chain_id = 1;                      // Chain identifier
+  string parent_chain_id = 2;              // Parent chain ID
+  repeated string child_chains = 3;        // Child chain IDs
+  string protocol_id = 4;                  // Protocol ID (JJ)
+  bool follows_protocol = 5;               // Follows protocol flag
+  int64 link_timestamp = 6;                // Link timestamp
+}
+
+// Protocol Buffer Service - For RPC operations
+service EthChainProtocolService {
+  // Lock ETH in personal gateway
+  rpc LockEthInGateway(PersonalGatewayEntry) returns (PersonalGatewayEntry);
+  
+  // Link ETH value to host local ID
+  rpc LinkEthValue(EthValueLink) returns (EthValueLink);
+  
+  // Validate stake permission
+  rpc ValidateStake(StakePermission) returns (StakePermission);
+  
+  // Process order and return ID
+  rpc ProcessOrder(OrderReturnId) returns (OrderReturnId);
+  
+  // Generate tokenized ID block
+  rpc GenerateIdBlock(IdBlock) returns (IdBlock);
+  
+  // Link chain to protocol
+  rpc LinkChain(ChainLink) returns (ChainLink);
+  
+  // Get protocol state
+  rpc GetProtocolState(EthChainProtocol) returns (EthChainProtocol);
+}
+

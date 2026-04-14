@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error Blocking Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .error-message {
+            background: #ffebee;
+            border: 2px solid #f44336;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px 0;
+            color: #f44336;
+        }
+        .error-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .error-modal {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .chat-area {
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #1976d2;
+        }
+        .console {
+            background: #2c2c2c;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            height: 200px;
+            overflow-y: auto;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Error Blocking Test Page</h1>
+        <p>This page simulates error messages that block the chat view.</p>
+        
+        <button id="addErrorMessage">Add Error Message</button>
+        <button id="addErrorOverlay">Add Error Overlay</button>
+        <button id="addWhoopsError">Add "Whoops" Error</button>
+        <button id="addChatArea">Add Chat Area</button>
+        <button id="clearAll">Clear All</button>
+        
+        <div class="console" id="console">
+            <div>> Error Blocking Test Console</div>
+            <div>> Install the enhanced Token Extractor userscript (v1.8)</div>
+            <div>> Watch for automatic error message removal</div>
+            <div>> Check browser console for detailed logs</div>
+        </div>
+        
+        <div id="contentArea">
+            <div class="chat-area">
+                <h3>Chat Area</h3>
+                <p>This is where the conversation should appear.</p>
+                <p>The system should ensure this area remains accessible even when error messages appear.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Console logging function
+        function logToConsole(message, type = 'info') {
+            const consoleEl = document.getElementById('console');
+            const line = document.createElement('div');
+            line.textContent = `> ${message}`;
+            if (type === 'error') {
+                line.style.color = '#ff5555';
+            } else if (type === 'success') {
+                line.style.color = '#55ff55';
+            } else if (type === 'warning') {
+                line.style.color = '#ffff55';
+            }
+            consoleEl.appendChild(line);
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+        }
+        
+        // Add error message
+        document.getElementById('addErrorMessage').addEventListener('click', function() {
+            const contentArea = document.getElementById('contentArea');
+            
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'error-message';
+            errorMessage.innerHTML = `
+                <h3>Error: Something went wrong</h3>
+                <p>We experienced an issue processing your request. Please try again later.</p>
+                <button>Retry</button>
+                <button>Refresh Page</button>
+            `;
+            
+            contentArea.appendChild(errorMessage);
+            
+            logToConsole('Added error message - check if Token Extractor removes it', 'warning');
+        });
+        
+        // Add error overlay
+        document.getElementById('addErrorOverlay').addEventListener('click', function() {
+            // Remove existing overlay if any
+            const existingOverlay = document.querySelector('.error-overlay');
+            if (existingOverlay) {
+                existingOverlay.remove();
+            }
+            
+            // Add new error overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'error-overlay';
+            overlay.innerHTML = `
+                <div class="error-modal">
+                    <h2>Whoops! We experienced an error</h2>
+                    <p>Something went wrong on our end. Please try again.</p>
+                    <button id="closeErrorOverlay">Close</button>
+                    <button>Refresh Page</button>
+                </div>
+            `;
+            
+            document.body.appendChild(overlay);
+            
+            // Add close functionality
+            document.getElementById('closeErrorOverlay').addEventListener('click', function() {
+                overlay.remove();
+                logToConsole('Error overlay manually closed', 'info');
+            });
+            
+            logToConsole('Added error overlay - check if Token Extractor removes it', 'warning');
+        });
+        
+        // Add "Whoops" error
+        document.getElementById('addWhoopsError').addEventListener('click', function() {
+            const contentArea = document.getElementById('contentArea');
+            
+            const whoopsError = document.createElement('div');
+            whoopsError.className = 'error-message';
+            whoopsError.setAttribute('role', 'alert');
+            whoopsError.innerHTML = `
+                <h3>Whoops! We experienced an error</h3>
+                <p>Something went wrong and we couldn't process your request. Please try again.</p>
+                <p>This error is blocking the chat view.</p>
+                <button>Retry</button>
+                <button>Go Back</button>
+            `;
+            
+            // Add it at the beginning to block chat
+            contentArea.insertBefore(whoopsError, contentArea.firstChild);
+            
+            logToConsole('Added "Whoops" error message - should be automatically removed', 'warning');
+        });
+        
+        // Add chat area
+        document.getElementById('addChatArea').addEventListener('click', function() {
+            const contentArea = document.getElementById('contentArea');
+            
+            const chatArea = document.createElement('div');
+            chatArea.className = 'chat-area';
+            chatArea.innerHTML = `
+                <h3>AI Chat Response</h3>
+                <p>This is a simulated AI response that should remain accessible.</p>
+                <p>The Token Extractor should ensure error messages don't block this content.</p>
+                <div class="message">
+                    <p><strong>AI:</strong> Hello! How can I help you today?</p>
+                </div>
+            `;
+            
+            contentArea.appendChild(chatArea);
+            
+            logToConsole('Added chat area - should remain accessible', 'success');
+        });
+        
+        // Clear all
+        document.getElementById('clearAll').addEventListener('click', function() {
+            const contentArea = document.getElementById('contentArea');
+            contentArea.innerHTML = `
+                <div class="chat-area">
+                    <h3>Chat Area</h3>
+                    <p>This is where the conversation should appear.</p>
+                    <p>The system should ensure this area remains accessible even when error messages appear.</p>
+                </div>
+            `;
+            
+            // Remove overlay if exists
+            const overlay = document.querySelector('.error-overlay');
+            if (overlay) {
+                overlay.remove();
+            }
+            
+            logToConsole('Cleared all elements', 'info');
+        });
+        
+        // Initial log
+        logToConsole('Error blocking test page loaded successfully');
+        logToConsole('Current URL: ' + window.location.href);
+        logToConsole('Install Token Extractor v1.8 to test error message removal');
+    </script>
+</body>
+</html>

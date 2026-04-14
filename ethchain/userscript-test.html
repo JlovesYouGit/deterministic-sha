@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="__className_8b3a0b __variable_cf05ac __variable_a9d0e8">
+<head>
+    <title>Token Extractor Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .token-display {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: monospace;
+            word-break: break-all;
+        }
+        button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #1976d2;
+        }
+        .console {
+            background: #2c2c2c;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            height: 200px;
+            overflow-y: auto;
+            margin: 20px 0;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .success {
+            background: #c8e6c9;
+            border: 1px solid #4caf50;
+        }
+        .error {
+            background: #ffcdd2;
+            border: 1px solid #f44336;
+        }
+        .paywall {
+            background: #fff3e0;
+            padding: 15px;
+            border: 2px solid #ff9800;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        .usage-limited {
+            opacity: 0.5;
+            pointer-events: none;
+            background: #ffebee;
+            padding: 10px;
+            border: 1px dashed #f44336;
+        }
+    </style>
+</head>
+<body class="chakra-ui-light">
+    <div class="container">
+        <h1>Token Extractor Test Page</h1>
+        <p>This page simulates the exact environment where tokens would appear.</p>
+        
+        <div class="status success">
+            <strong>Backend Status:</strong> Running at http://localhost:3000
+        </div>
+        
+        <div class="paywall">
+            <h3>Premium Content Locked</h3>
+            <p>This content is only available to premium users.</p>
+            <button class="unlock-button">Unlock Premium Content</button>
+        </div>
+        
+        <div class="usage-limited">
+            <p>Your usage is limited. Please upgrade to access more features.</p>
+        </div>
+        
+        <button id="loadTokens">Load Exact Token Structure</button>
+        <button id="loadAltTokens">Load Alternative Tokens</button>
+        <button id="loadJWT">Load JWT Tokens</button>
+        <button id="clearContent">Clear Content</button>
+        <button id="showDebug">Show Debug Info</button>
+        
+        <div class="console" id="console">
+            <div>> Token Extractor Test Console</div>
+            <div>> Make sure the userscript is installed and enabled</div>
+            <div>> Open browser developer tools to see detailed logs</div>
+            <div>> Click buttons below to test different scenarios</div>
+        </div>
+        
+        <div id="dynamicContent"></div>
+    </div>
+
+    <script>
+        // Console logging function
+        function logToConsole(message, type = 'info') {
+            const consoleEl = document.getElementById('console');
+            const line = document.createElement('div');
+            line.textContent = `> ${message}`;
+            if (type === 'error') {
+                line.style.color = '#ff5555';
+            } else if (type === 'success') {
+                line.style.color = '#55ff55';
+            } else if (type === 'warning') {
+                line.style.color = '#ffff55';
+            }
+            consoleEl.appendChild(line);
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+        }
+        
+        // Load the exact token structure we're targeting
+        document.getElementById('loadTokens').addEventListener('click', function() {
+            logToConsole('Loading exact token structure from target website...', 'info');
+            
+            const container = document.getElementById('dynamicContent');
+            container.innerHTML = `
+                <div class="chakra-portal">
+                    <div class="chakra-portal-zIndex">
+                        <div>
+                            <div class="chakra-modal__content-container css-wl0d9u">
+                                <section id="chakra-modal-_r_19_" class="chakra-modal__content css-kanh41">
+                                    <div class="chakra-stack css-1n7w7sb">
+                                        <div class="css-ng2i67">
+                                            <div class="chakra-container css-sa1frd">
+                                                <div class="chakra-stack css-4rng1r">
+                                                    <div class="chakra-stack css-11nrrcx">
+                                                        <div class="chakra-card css-ohmqgl">
+                                                            <div class="chakra-stack css-8g8ihq">
+                                                                <div class="css-1om28i">
+                                                                    <h2>Access Tokens</h2>
+                                                                    <p>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</p>
+                                                                    <p>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmUgU21pdGgiLCJpYXQiOjE1MTYyMzkwMjJ9.5LJ3A44W4K6SbK9b1Vj0dX4v3Q3Q8w3Q8w3Q8w3Q8w3</p>
+                                                                    <p>Additional token data for testing purposes...</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            logToConsole('Exact token structure loaded successfully!', 'success');
+            logToConsole('If userscript is working, you should see activity in the browser console and backend logs', 'info');
+        });
+        
+        // Load alternative token structure
+        document.getElementById('loadAltTokens').addEventListener('click', function() {
+            logToConsole('Loading alternative token structure...', 'info');
+            
+            const container = document.getElementById('dynamicContent');
+            container.innerHTML = `
+                <div class="token-container" style="background: #e3f2fd; border: 1px solid #2196f3; border-radius: 4px; padding: 15px; margin: 20px 0;">
+                    <h3>Premium Access Tokens</h3>
+                    <div class="css-1om28i">
+                        <p>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYW5vbnltb3VzIiwidXNhZ2UiOiJwcmVtaXVtIiwiaWF0IjoxNTE2MjM5MDIyfQ.59ry0Eg_hoeyD2E5J64p3J3J3J3J3J3J3J3J3J3J3J3</p>
+                        <p>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYW5vbnltb3VzIiwicHJlbWl1bV9hY2Nlc3MiOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.YW55X290aGVyX3Rva2VuX2RhdGFfaGVyZQ</p>
+                    </div>
+                </div>
+            `;
+            
+            logToConsole('Alternative token container loaded!', 'success');
+        });
+        
+        // Load JWT tokens in page content
+        document.getElementById('loadJWT').addEventListener('click', function() {
+            logToConsole('Loading JWT tokens in page content...', 'info');
+            
+            const container = document.getElementById('dynamicContent');
+            container.innerHTML = `
+                <div style="padding: 20px;">
+                    <h2>Welcome to Premium Service</h2>
+                    <p>Here are your access tokens:</p>
+                    <div style="background: #f5f5f5; padding: 15px; border-radius: 4px; font-family: monospace;">
+                        <p>Access Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjM0LCJyb2xlIjoicHJlbWl1bSIsImlhdCI6MTUxNjIzOTAyMn0.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ</p>
+                        <p>Refresh Token: cmVmc2hfdG9rZW46OnB4eXo2Nzg5MDFfYWRtaW5pc3RyYXRvcl9hY2Nlc3NfcmVmcmVzaF90b2tlbjEyMzQ1Njc4OTA</p>
+                    </div>
+                    <p>These tokens will grant you unlimited access to all premium features.</p>
+                </div>
+            `;
+            
+            logToConsole('JWT tokens loaded in page content!', 'success');
+        });
+        
+        // Clear content
+        document.getElementById('clearContent').addEventListener('click', function() {
+            document.getElementById('dynamicContent').innerHTML = '';
+            logToConsole('Content cleared');
+        });
+        
+        // Show debug info
+        document.getElementById('showDebug').addEventListener('click', function() {
+            const debugInfo = {
+                url: window.location.href,
+                title: document.title,
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent
+            };
+            
+            logToConsole('Debug Information:', 'info');
+            logToConsole('URL: ' + debugInfo.url, 'info');
+            logToConsole('Title: ' + debugInfo.title, 'info');
+            logToConsole('Timestamp: ' + debugInfo.timestamp, 'info');
+            
+            // Also show in alert for visibility
+            alert(`Debug Info:\nURL: ${debugInfo.url}\nTitle: ${debugInfo.title}\nTimestamp: ${debugInfo.timestamp}`);
+        });
+        
+        // Initial log
+        logToConsole('Token Extractor test page loaded successfully');
+        logToConsole('Current URL: ' + window.location.href);
+        logToConsole('Click buttons above to test the userscript functionality');
+        
+        // Simulate some dynamic content loading after a delay
+        setTimeout(function() {
+            logToConsole('Simulating dynamic content loading...', 'info');
+        }, 3000);
+    </script>
+</body>
+</html>

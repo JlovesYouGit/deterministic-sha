@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="__className_8b3a0b __variable_cf05ac __variable_a9d0e8">
+<head>
+    <title>New Structure Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .token-display {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: monospace;
+            word-break: break-all;
+        }
+        button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #1976d2;
+        }
+        .console {
+            background: #2c2c2c;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            height: 200px;
+            overflow-y: auto;
+            margin: 20px 0;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .success {
+            background: #c8e6c9;
+            border: 1px solid #4caf50;
+        }
+        .error {
+            background: #ffcdd2;
+            border: 1px solid #f44336;
+        }
+        .paywall {
+            background: #fff3e0;
+            padding: 15px;
+            border: 2px solid #ff9800;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        .usage-limited {
+            opacity: 0.5;
+            pointer-events: none;
+            background: #ffebee;
+            padding: 10px;
+            border: 1px dashed #f44336;
+        }
+        .chakra-alert {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body class="chakra-ui-light">
+    <div class="container">
+        <h1>New Structure Test Page</h1>
+        <p>This page simulates the new HTML structure you mentioned.</p>
+        
+        <div class="status success">
+            <strong>Backend Status:</strong> Running at http://localhost:3000
+        </div>
+        
+        <div class="paywall">
+            <h3>Premium Content Locked</h3>
+            <p>This content is only available to premium users.</p>
+            <button class="unlock-button">Unlock Premium Content</button>
+        </div>
+        
+        <div class="usage-limited">
+            <p>Your usage is limited. Please upgrade to access more features.</p>
+        </div>
+        
+        <button id="loadNewStructure">Load New Structure</button>
+        <button id="loadAlertTokens">Load Alert with Tokens</button>
+        <button id="clearContent">Clear Content</button>
+        <button id="showDebug">Show Debug Info</button>
+        
+        <div class="console" id="console">
+            <div>> New Structure Test Console</div>
+            <div>> Make sure the userscript v1.5 is installed and enabled</div>
+            <div>> Open browser developer tools to see detailed logs</div>
+            <div>> Click buttons below to test different scenarios</div>
+        </div>
+        
+        <div id="dynamicContent"></div>
+    </div>
+
+    <script>
+        // Console logging function
+        function logToConsole(message, type = 'info') {
+            const consoleEl = document.getElementById('console');
+            const line = document.createElement('div');
+            line.textContent = `> ${message}`;
+            if (type === 'error') {
+                line.style.color = '#ff5555';
+            } else if (type === 'success') {
+                line.style.color = '#55ff55';
+            } else if (type === 'warning') {
+                line.style.color = '#ffff55';
+            }
+            consoleEl.appendChild(line);
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+        }
+        
+        // Load the new structure you mentioned
+        document.getElementById('loadNewStructure').addEventListener('click', function() {
+            logToConsole('Loading new structure: html.__className_8b3a0b.__variable_cf05ac.__variable_a9d0e8 body.chakra-ui-light div div.css-wi1irr div.css-yeb9zr div.css-1jkgmd4 div.css-jskurt div.h-full.w-full.flex.flex-col div.css-1m9uiop div.css-13ow1xs div.css-1uyum70 div.chakra-alert.css-1m9nyhc', 'info');
+            
+            const container = document.getElementById('dynamicContent');
+            container.innerHTML = `
+                <div class="css-wi1irr">
+                    <div class="css-yeb9zr">
+                        <div class="css-1jkgmd4">
+                            <div class="css-jskurt">
+                                <div class="h-full w-full flex flex-col">
+                                    <div class="css-1m9uiop">
+                                        <div class="css-13ow1xs">
+                                            <div class="css-1uyum70">
+                                                <div class="chakra-alert css-1m9nyhc">
+                                                    <h2>Access Tokens</h2>
+                                                    <p>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</p>
+                                                    <p>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmUgU21pdGgiLCJpYXQiOjE1MTYyMzkwMjJ9.5LJ3A44W4K6SbK9b1Vj0dX4v3Q3Q8w3Q8w3Q8w3Q8w3</p>
+                                                    <p>Additional token data for testing purposes...</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            logToConsole('New structure loaded successfully!', 'success');
+            logToConsole('If userscript v1.5 is working, you should see activity in the browser console and backend logs', 'info');
+        });
+        
+        // Load alert with tokens
+        document.getElementById('loadAlertTokens').addEventListener('click', function() {
+            logToConsole('Loading alert element with tokens...', 'info');
+            
+            const container = document.getElementById('dynamicContent');
+            container.innerHTML = `
+                <div class="chakra-alert css-1m9nyhc" style="background: #e3f2fd; border: 1px solid #2196f3; border-radius: 4px; padding: 15px; margin: 10px 0;">
+                    <h3>Important Security Alert</h3>
+                    <p>Your access token is: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYW5vbnltb3VzIiwidXNhZ2UiOiJwcmVtaXVtIiwiaWF0IjoxNTE2MjM5MDIyfQ.59ry0Eg_hoeyD2E5J64p3J3J3J3J3J3J3J3J3J3J3J3</p>
+                    <p>Session token: cmVmc2hfdG9rZW46OnB4eXo2Nzg5MDFfYWRtaW5pc3RyYXRvcl9hY2Nlc3NfcmVmcmVzaF90b2tlbjEyMzQ1Njc4OTA</p>
+                </div>
+            `;
+            
+            logToConsole('Alert with tokens loaded!', 'success');
+        });
+        
+        // Clear content
+        document.getElementById('clearContent').addEventListener('click', function() {
+            document.getElementById('dynamicContent').innerHTML = '';
+            logToConsole('Content cleared');
+        });
+        
+        // Show debug info
+        document.getElementById('showDebug').addEventListener('click', function() {
+            const debugInfo = {
+                url: window.location.href,
+                title: document.title,
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent
+            };
+            
+            logToConsole('Debug Information:', 'info');
+            logToConsole('URL: ' + debugInfo.url, 'info');
+            logToConsole('Title: ' + debugInfo.title, 'info');
+            logToConsole('Timestamp: ' + debugInfo.timestamp, 'info');
+            
+            // Also show in alert for visibility
+            alert(`Debug Info:\nURL: ${debugInfo.url}\nTitle: ${debugInfo.title}\nTimestamp: ${debugInfo.timestamp}`);
+        });
+        
+        // Initial log
+        logToConsole('New structure test page loaded successfully');
+        logToConsole('Current URL: ' + window.location.href);
+        logToConsole('Click buttons above to test the userscript functionality');
+        
+        // Simulate some dynamic content loading after a delay
+        setTimeout(function() {
+            logToConsole('Simulating dynamic content loading...', 'info');
+        }, 3000);
+    </script>
+</body>
+</html>
