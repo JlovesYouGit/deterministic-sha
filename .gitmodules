@@ -1,0 +1,4 @@
+[submodule "ScryptMineOS"]
+	path = ScryptMineOS
+	url = https://github.com/JlovesYouGit/ScryptMineOS.git
+	branch = scryptmineos-main
